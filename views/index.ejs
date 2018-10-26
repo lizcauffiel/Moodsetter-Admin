@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 	<!-- fontfrom typekit css -->
 	<link rel="stylesheet" href="https://use.typekit.net/taq7hkp.css">
 
@@ -22,6 +23,7 @@
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/png" href="images/logo.png" />
 	<title>Mood Setter sample</title>
+
 </head>
 
 <body>
@@ -44,7 +46,7 @@
 					<h3>USERNAME</h3>
 				</div>
 				<div class="col-4 col-sm-4 col-md-4 col-lg-4" style="padding: 0px;">
-					<input class="pinInput" type="text" name="pin" value="">
+					<input class="pinInput" type="text" id="username" name="pin" value="">
 				</div>
 				<div class="col-2 col-sm-2 col-md-2 col-lg-2">
 				</div>
@@ -58,7 +60,7 @@
 					<h3>PASSWORD</h3>
 				</div>
 				<div class="col-4 col-sm-4 col-md-4 col-lg-4" style="padding: 0px;">
-					<input class="pinInput" type="text" name="pin" value="">
+					<input class="pinInput" type="text" id="password" name="pin" value="">
 				</div>
 				<div class="col-2 col-sm-2 col-md-2 col-lg-2">
 				</div>
@@ -68,7 +70,7 @@
 			<div class="row">
 				<div class="col-4 col-sm-4 col-md-4 col-lg-4"></div>
 				<div class="col-4 col-sm-4 col-md-4 col-lg-4">
-					<button type="button" class="submitButton">Submit</button>
+					<button type="button" id="submit" class="submitButton">Submit</button>
 				</div>
 				<div class="col-4 col-sm-4 col-md-4 col-lg-4"></div>
 
@@ -76,6 +78,7 @@
 			<!-- /.container -->
 		<% include partials/footer %>
 		</div>
+		<script src="javascripts/menu.js"></script>
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
