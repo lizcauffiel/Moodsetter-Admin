@@ -1,11 +1,21 @@
 var express = require('express');
 var router = express.Router();
-/* GET home page. */
+// /* GET home page. */
 router.get('/', function (req, res, next) {
 	res.render('index', { title: 'Moodsetter' });
-	// res.use(express.static('css'));
-	// res.end();
 });
+
+
+/*
+* GET home page.
+*/
+
+exports.index = function (req, res) {
+	var message = '';
+	res.render('index', { message: message });
+
+};
+
 
 // nav bar
 router.get('/presetcolor', function (req, res, next) {
@@ -38,4 +48,4 @@ router.get('/contact', function (req, res, next) {
 	res.render('contactFooter', { page: 'Contact', menuId: 'contactFooter' });
 });
 
-module.exports = router;
+// module.exports = router;

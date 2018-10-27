@@ -27,9 +27,9 @@
 </head>
 
 <body>
-<% include partials/menu %>
+	<!-- ejs menu (nav bar navigation) -->
+	<% include partials/menu %>
 	<div class="bg">
-
 		<!-- Page Content -->
 		<div class="container">
 			<div class="row">
@@ -38,55 +38,72 @@
 					<img class="title" src="images/title.png" alt="Mood Setter" style="width: 100%;">
 				</div>
 			</div>
-			<!-- username input -->
-			<div class="row">
-				<div class="col-1 col-sm-1 col-md-1 col-lg-1">
+			<div id="loginbox" style="" class="mainbox">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<!--<div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>-->
+					</div>
+					<!-- error message if the user logs in wrong (not in database) -->
+					<div style="" class="panel-body">
+						<% if (message.length > 0) { %>
+						<div class="alert alert-danger col-12 col-sm-12 col-md-12 col-lg-12">
+							<%= message %>
+						</div>
+						<% } %>
+						<form id="loginform" class="form-horizontal" role="form" method="post" action="/login">
+							<!-- username input -->
+							<div class="row">
+								<div class="col-1 col-sm-1 col-md-1 col-lg-1">
+								</div>
+								<div class="col-5 col-sm-5 col-md-5 col-lg-5" style="padding-right: 0px;">
+									<h3>USERNAME</h3>
+								</div>
+								<div class="col-4 col-sm-4 col-md-4 col-lg-4" style="padding: 0px;">
+									<input class="pinInput" type="text" id="login-username" name="user_name" value="">
+								</div>
+								<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+								</div>
+							</div>
+							<br />
+							<!-- password input -->
+							<div class="row">
+								<div class="col-1 col-sm-1 col-md-1 col-lg-1">
+								</div>
+								<div class="col-5 col-sm-5 col-md-5 col-lg-5" style="padding-right: 0px;">
+									<h3>PASSWORD</h3>
+								</div>
+								<div class="col-4 col-sm-4 col-md-4 col-lg-4" style="padding: 0px;">
+									<input class="pinInput" type="password" id="login-password" name="password" value="">
+								</div>
+								<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+								</div>
+							</div>
+							<br />
+							<!-- submit button -->
+							<div class="row">
+								<div class="col-4 col-sm-4 col-md-4 col-lg-4"></div>
+								<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+									<button type="submit" id="btn-login" class="submitButton">Submit</button>
+								</div>
+								<div class="col-4 col-sm-4 col-md-4 col-lg-4"></div>
+							</div>
+						</form>
+					</div>
 				</div>
-				<div class="col-5 col-sm-5 col-md-5 col-lg-5" style="padding-right: 0px;">
-					<h3>USERNAME</h3>
-				</div>
-				<div class="col-4 col-sm-4 col-md-4 col-lg-4" style="padding: 0px;">
-					<input class="pinInput" type="text" id="username" name="pin" value="">
-				</div>
-				<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-				</div>
-			</div>
-			<br />
-			<!-- password input -->
-			<div class="row">
-				<div class="col-1 col-sm-1 col-md-1 col-lg-1">
-				</div>
-				<div class="col-5 col-sm-5 col-md-5 col-lg-5" style="padding-right: 0px;">
-					<h3>PASSWORD</h3>
-				</div>
-				<div class="col-4 col-sm-4 col-md-4 col-lg-4" style="padding: 0px;">
-					<input class="pinInput" type="text" id="password" name="pin" value="">
-				</div>
-				<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-				</div>
-			</div>
-			<br />
-			<!-- submit button -->
-			<div class="row">
-				<div class="col-4 col-sm-4 col-md-4 col-lg-4"></div>
-				<div class="col-4 col-sm-4 col-md-4 col-lg-4">
-					<button type="button" id="submit" class="submitButton">Submit</button>
-				</div>
-				<div class="col-4 col-sm-4 col-md-4 col-lg-4"></div>
-
 			</div>
 			<!-- /.container -->
-		<% include partials/footer %>
+			<% include partials/footer %>
 		</div>
-		<script src="javascripts/menu.js"></script>
-		<!-- Optional JavaScript -->
-		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		 crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-		 crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-		 crossorigin="anonymous"></script>
+	</div>
+	<script src="javascripts/menu.js"></script>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	 crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	 crossorigin="anonymous"></script>
 </body>
 
 </html>
