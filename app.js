@@ -1,51 +1,8 @@
-// var createError = require('http-errors');
-// var express = require('express');
-// var path = require('path');
-// var cookieParser = require('cookie-parser');
-// var logger = require('morgan');
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
-// var app = express();
-
-// // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
-
-
-// app.use(logger('dev'));
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
-// app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
-
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
-
-// // catch 404 and forward to error handler
-// app.use(function (req, res, next) {
-// 	next(createError(404));
-// });
-
-// // error handler
-// app.use(function (err, req, res, next) {
-// 	// set locals, only providing error in development
-// 	res.locals.message = err.message;
-// 	res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-// 	// render the error page
-// 	res.status(err.status || 500);
-// 	res.render('error');
-// });
-
-// module.exports = app;
-
-
-/**
-* Module dependencies.
-*/
+//Module dependencies.
 var express = require('express')
 	, routes = require('./routes')
 	, user = require('./routes/user')
+	, table = require('./routes/table')
 	, http = require('http')
 	, path = require('path');
 //var methodOverride = require('method-override');
@@ -53,16 +10,31 @@ var session = require('express-session');
 var app = express();
 var mysql = require('mysql');
 var bodyParser = require("body-parser");
-var connection = mysql.createConnection({
+var colorUtility = require('./public/javascripts/color');
+
+//connect to admin db
+/* var adminConnection = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
 	password: 'Tinkwyatt811',
 	database: 'test'
 });
 
+adminConnection.connect(); */
+
+//connect to user (table) db
+var connection = mysql.createConnection({
+	host: 'localhost',
+	user: 'root',
+	password: 'Tinkwyatt811',
+	database: 'moodsetter',
+});
+
 connection.connect();
 
+//global connection
 global.db = connection;
+// global.db = tableConnection;
 
 // all environments
 app.set('port', process.env.PORT || 8080);
@@ -75,7 +47,8 @@ app.use(session({
 	secret: 'keyboard cat',
 	resave: false,
 	saveUninitialized: true,
-	cookie: { maxAge: 60000 }
+	//cookie expires after 2 min
+	cookie: { maxAge: 880000 }
 }))
 
 // development only
@@ -88,6 +61,70 @@ app.post('/login', user.login);//call for login post
 app.get('/presetcolor', user.presetcolor);//call for dashboard page after login
 app.get('/home/logout', user.logout);//call for logout
 app.get('/home/profile', user.profile);//to render users profile
+
+app.post('/table', table.tableSet);//call for login post
+
+/* app.get('/user', function (req, res) {
+	console.log(req.query);
+	ssn = req.session;
+	ssn.tableID = req.query.tableID;
+	console.log("req.query.tableID", req.query.tableID);
+	console.log(ssn.tableID);
+	res.end('done');
+}); */
+
+//get the color the user picked from the pages
+/* app.post('/table', function (req, res) {
+	//var redPreset = req.body.redPreset;
+	//console.log(redPreset);
+	console.log("this TABLE is before sending the color");
+
+	var red = req.body.redInput;
+	var green = req.body.greenInput;
+	var blue = req.body.blueInput;
+	var tablePin = req.session.tablePin;
+	//var tableID = req.session.tableID;
+	console.log("sending color");
+
+	table.tableSet();
+
+	//value from the color pages just submitted
+	console.log("body", req.body);
+	//res.send(200);
+	console.log("sent color");
+
+	//redirect to color page
+	return res.redirect('back');
+
+}); */
+
+//get the color the user picked from the pages
+app.post('/table', function (req, res) {
+	//var redPreset = req.body.redPreset;
+	//console.log(redPreset);
+	console.log("this is before sending the color");
+
+	var red = req.body.redInput;
+	var green = req.body.greenInput;
+	var blue = req.body.blueInput;
+	var host = req.session.host;
+	//var tableID = req.session.tableID;
+	console.log("sending color");
+
+	colorUtility.sendColor(host, red, green, blue);
+
+	//value from the color pages just submitted
+	console.log("body", req.body);
+	//res.send(200);
+	console.log("sent color");
+
+	//redirect to color page
+	return res.redirect('back');
+
+});
+
+
+
 
 app.get('/loginhome', function (req, res) {
 	res.render('loginhome', {
@@ -122,7 +159,7 @@ app.get('/contact', function (req, res) {
 //Middleware
 
 app.listen(8080)
-
+module.exports = app;
 
 
 

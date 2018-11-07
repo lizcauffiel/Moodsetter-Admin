@@ -30,7 +30,7 @@
 </head>
 
 <body>
-<% include partials/menu %>
+	<% include partials/menu %>
 
 	<div class="bg">
 		<div class="triangle-right"></div>
@@ -43,65 +43,80 @@
 					<h1>Mood Color<br /> Selection</h1>
 				</div>
 			</div>
-			<!--start of mood colors -->
-			<!-- romantic card -->
-			<div class="row mx-auto">
-				<div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
-					<div class="card romantic" ontouchstart="myFunction()">
-						<input id="romanticValue" value="#BC243C" type="color" style="display: none;">
-						<div class="card-body">
-							<h3 class="card-title">Romantic</h3>
+			<!-- start of form, that includes a post method to color.js -->
+			<form id="moodcolorform" class="form-horizontal" role="form" method="post" action="/table">
+				<input type="text" id="redColorInput" name="redInput" value="" style="display: none;" />
+				<input type=" text" id="greenColorInput" name="greenInput" value="" style="display: none;" />
+				<input type="text" id="blueColorInput" name="blueInput" value="" style="display: none;" />
+
+
+				<!--start of mood colors -->
+				<!-- romantic card -->
+				<div class="row mx-auto">
+					<button type="button" value="(188,36,60)" class="moodColor romantic" style="border: none !important; background: none !important;	width: 100%; padding: 0px;">
+						<div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="card romantic">
+								<div class="card-body">
+									<h3 class="card-title">Romantic</h3>
+								</div>
+							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-			<!-- entertaining card -->
-			<div class="row mx-auto">
-				<div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
-					<div class="card entertaining">
-						<div class="card-body">
-							<h4 class="card-title">Entertaining</h4>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- relaxing card -->
-			<div class="row mx-auto">
-				<div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
-					<div class="card relaxing">
-						<div class="card-body">
-							<h5 class="card-title">Relaxing</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Warmth card -->
-			<div class="row mx-auto">
-				<div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
-					<div class="card warmth">
-						<div class="card-body">
-							<h5 class="card-title">Warmth</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- submit button & table input-->
-			<div class="row mx-auto">
-				<!-- password input -->
-				<div class="col-2 col-sm-2 col-md-2 col-lg-2" style="padding: 0px; margin-top:25px;">
-					<h6>Table #</h6>
-				</div>
-				<div class="col-4 col-sm-4 col-md-4 col-lg-4" style="padding: 0px;">
-					<input class="tablePinInput" type="text" name="pin" value="" style="width: 100%; margin-top:20px;">
-				</div>
-				<div class="text-center col-5 col-sm-5 col-md-5 col-lg-5">
-					<button class="submitButton">
-						<h2>Submit</h2>
 					</button>
 				</div>
-				<div class="col-1 col-sm-1 col-md-1 col-lg-1">
+				<!-- entertaining card -->
+				<div class="row mx-auto">
+					<button type="button" value="(242,85,44)" class="moodColor entertaining" style="border: none !important; background: none !important;	width: 100%; padding: 0px;">
+						<div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="card entertaining">
+								<div class="card-body">
+									<h4 class="card-title">Entertaining</h4>
+								</div>
+							</div>
+						</div>
+					</button>
 				</div>
-			</div>
+				<!-- relaxing card -->
+				<div class="row mx-auto">
+					<button type="button" value="(79,132,196)" class="moodColor relaxing" style="border: none !important; background: none !important;	width: 100%; padding: 0px;">
+						<div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="card relaxing">
+								<div class="card-body">
+									<h5 class="card-title">Relaxing</h5>
+								</div>
+							</div>
+						</div>
+					</button>
+				</div>
+				<!-- Warmth card -->
+				<div class="row mx-auto">
+					<button type="button" value="(246,209,85)" class="moodColor warmth" style="border: none !important; background: none !important;	width: 100%; padding: 0px;">
+						<div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="card warmth">
+								<div class="card-body">
+									<h5 class="card-title">Warmth</h5>
+								</div>
+							</div>
+						</div>
+					</button>
+				</div>
+				<!-- submit button & table input-->
+				<div class="row mx-auto">
+					<!-- password input -->
+					<div class="col-2 col-sm-2 col-md-2 col-lg-2" style="padding: 0px; margin-top:25px;">
+						<h6>Table #</h6>
+					</div>
+					<div class="col-4 col-sm-4 col-md-4 col-lg-4" style="padding: 0px;">
+						<input class="tablePinInput" type="text" name="tablePin" value="" style="width: 100%; margin-top:20px;">
+					</div>
+					<div class="text-center col-5 col-sm-5 col-md-5 col-lg-5">
+						<button class="submitButton">
+							<h2>Submit</h2>
+						</button>
+					</div>
+					<div class="col-1 col-sm-1 col-md-1 col-lg-1">
+					</div>
+				</div>
+			</form>
 			<button class="toolTipBtn" id="toolTipBtn">
 				<i class="fas fa-2x fa-question-circle"></i>
 			</button>
@@ -122,7 +137,7 @@
 			<br /><br /><br /><br />
 			<!-- /.container -->
 
-		<% include partials/footer %>
+			<% include partials/footer %>
 		</div>
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -159,43 +174,47 @@
 
 			// When the user clicks anywhere outside of the modal, close it
 
-			function HEX2RGB(hex) {
-				"use strict";
-				if (hex.charAt(0) === '#') {
-					hex = hex.substr(1);
+			//getting color value of the button clicked
+			$("button").click(function () {
+				//if button has the colorCircle class, if not return
+				if ($(this).hasClass("moodColor") && $(this).hasClass("romantic")) {
+					//alert(this.value); // or alert($(this).attr('id'));
+					$("#redColorInput").val(188);
+					$("#greenColorInput").val(36);
+					$("#blueColorInput").val(60);
+					console.log($('#redColorInput').val());
+					console.log($('#greenColorInput').val());
+					console.log($('#blueColorInput').val());
+				} else if ($(this).hasClass("moodColor") && $(this).hasClass("entertaining")) {
+					//alert(this.value); // or alert($(this).attr('id'));
+					$("#redColorInput").val(242);
+					$("#greenColorInput").val(85);
+					$("#blueColorInput").val(44);
+					console.log($('#redColorInput').val());
+					console.log($('#greenColorInput').val());
+					console.log($('#blueColorInput').val());
+				} else if ($(this).hasClass("moodColor") && $(this).hasClass("relaxing")) {
+					//alert(this.value); // or alert($(this).attr('id'));
+					$("#redColorInput").val(79);
+					$("#greenColorInput").val(132);
+					$("#blueColorInput").val(196);
+					console.log($('#redColorInput').val());
+					console.log($('#greenColorInput').val());
+					console.log($('#blueColorInput').val());
+				} else if ($(this).hasClass("moodColor") && $(this).hasClass("warmth")) {
+					//alert(this.value); // or alert($(this).attr('id'));
+					$("#redColorInput").val(246);
+					$("#greenColorInput").val(209);
+					$("#blueColorInput").val(85);
+					console.log($('#redColorInput').val());
+					console.log($('#greenColorInput').val());
+					console.log($('#blueColorInput').val());
 				}
-				if ((hex.length < 2) || (hex.length > 6)) {
-					return false;
+				else {
+					return;
 				}
-				var values = hex.split(''),
-					r,
-					g,
-					b;
+			});
 
-				if (hex.length === 2) {
-					r = parseInt(values[0].toString() + values[1].toString(), 16);
-					g = r;
-					b = r;
-				} else if (hex.length === 3) {
-					r = parseInt(values[0].toString() + values[0].toString(), 16);
-					g = parseInt(values[1].toString() + values[1].toString(), 16);
-					b = parseInt(values[2].toString() + values[2].toString(), 16);
-				} else if (hex.length === 6) {
-					r = parseInt(values[0].toString() + values[1].toString(), 16);
-					g = parseInt(values[2].toString() + values[3].toString(), 16);
-					b = parseInt(values[4].toString() + values[5].toString(), 16);
-				} else {
-					return false;
-				}
-				console.log([r, g, b]);
-				return [r, g, b];
-			}
-			function myFunction() {
-				console.log("red");
-				var hexvalue = document.getElementById("romanticValue").value;
-				console.log(hexvalue);
-				HEX2RGB(hexvalue);
-			}
 		</script>
 
 </body>
