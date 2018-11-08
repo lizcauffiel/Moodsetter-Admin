@@ -1,3 +1,5 @@
+//This is place where we will be defining all our website routes.
+
 //Module dependencies.
 var express = require('express')
 	, routes = require('./routes')
@@ -5,24 +7,21 @@ var express = require('express')
 	, table = require('./routes/table')
 	, http = require('http')
 	, path = require('path');
-//var methodOverride = require('method-override');
 var session = require('express-session');
 var app = express();
 var mysql = require('mysql');
 var bodyParser = require("body-parser");
+
+
+
+//IDK IF NEEDED
 var colorUtility = require('./public/javascripts/color');
 
-//connect to admin db
-/* var adminConnection = mysql.createConnection({
-	host: 'localhost',
-	user: 'root',
-	password: 'Tinkwyatt811',
-	database: 'test'
-});
 
-adminConnection.connect(); */
 
-//connect to user (table) db
+
+
+//connect to user sql (table) db
 var connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
@@ -30,11 +29,11 @@ var connection = mysql.createConnection({
 	database: 'moodsetter',
 });
 
+//create connection
 connection.connect();
 
 //global connection
 global.db = connection;
-// global.db = tableConnection;
 
 // all environments
 app.set('port', process.env.PORT || 8080);
@@ -47,85 +46,59 @@ app.use(session({
 	secret: 'keyboard cat',
 	resave: false,
 	saveUninitialized: true,
-	//cookie expires after 2 min
-	cookie: { maxAge: 880000 }
+	//cookie expires after 1 hour
+	cookie: { expiry: 3600 }
 }))
 
 // development only
-
 app.get('/', routes.index);//call for main index page
-app.get('/signup', user.signup);//call for signup page
-app.post('/signup', user.signup);//call for signup post 
 app.get('/login', routes.index);//call for login page
 app.post('/login', user.login);//call for login post
 app.get('/presetcolor', user.presetcolor);//call for dashboard page after login
-app.get('/home/logout', user.logout);//call for logout
-app.get('/home/profile', user.profile);//to render users profile
 
-app.post('/table', table.tableSet);//call for login post
-
-/* app.get('/user', function (req, res) {
-	console.log(req.query);
-	ssn = req.session;
-	ssn.tableID = req.query.tableID;
-	console.log("req.query.tableID", req.query.tableID);
-	console.log(ssn.tableID);
-	res.end('done');
-}); */
-
-//get the color the user picked from the pages
-/* app.post('/table', function (req, res) {
-	//var redPreset = req.body.redPreset;
-	//console.log(redPreset);
-	console.log("this TABLE is before sending the color");
-
-	var red = req.body.redInput;
-	var green = req.body.greenInput;
-	var blue = req.body.blueInput;
-	var tablePin = req.session.tablePin;
-	//var tableID = req.session.tableID;
-	console.log("sending color");
-
-	table.tableSet();
-
-	//value from the color pages just submitted
-	console.log("body", req.body);
-	//res.send(200);
-	console.log("sent color");
-
-	//redirect to color page
-	return res.redirect('back');
-
-}); */
+app.post('/table', table.tableSet);//call for table.js post
 
 //get the color the user picked from the pages
 app.post('/table', function (req, res) {
-	//var redPreset = req.body.redPreset;
-	//console.log(redPreset);
-	console.log("this is before sending the color");
+	//testing
+	//console.log("this is before sending the color");
 
+	//the input and values from the color forms (pages)
 	var red = req.body.redInput;
 	var green = req.body.greenInput;
 	var blue = req.body.blueInput;
 	var host = req.session.host;
-	//var tableID = req.session.tableID;
-	console.log("sending color");
 
+	//testing
+	//console.log("sending color");
+
+
+
+
+
+	//IDK IF NEEDED
+	//call sendColor function in the colorUtility pass the parameters
+	//of the values found in the color forms (pages)
 	colorUtility.sendColor(host, red, green, blue);
+
+
+
+
 
 	//value from the color pages just submitted
 	console.log("body", req.body);
+	//testing
 	//res.send(200);
-	console.log("sent color");
+	//console.log("sent color");
 
-	//redirect to color page
+	//redirect to color page they just submitted
 	return res.redirect('back');
 
 });
 
 
 
-
+//get the pages when the user clicks on their links and render them
 app.get('/loginhome', function (req, res) {
 	res.render('loginhome', {
 		title: 'loginhome'
@@ -158,7 +131,9 @@ app.get('/contact', function (req, res) {
 });
 //Middleware
 
+//listening on port 8080
 app.listen(8080)
+//export app from this file
 module.exports = app;
 
 

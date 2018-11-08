@@ -1,7 +1,7 @@
+//NOT IN USE FOR ADMIN
 var express = require("express");
 var router = express.Router();
 const request = require('request');
-//new
 var session = require('express-session');
 var app = express();
 

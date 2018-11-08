@@ -15,7 +15,6 @@ var JBSlider = function (opts) {
 	bind_events.apply(this);
 
 	this.jb_slider_handle = $('.jbslider-handle-' + this.color + '');
-
 }
 
 function setup_slider(color) {
@@ -24,12 +23,16 @@ function setup_slider(color) {
 
 	var slider_html = "";
 	slider_html += this.opts.background_content;
+
 	slider_html += "<div id='" + this.handle_id + "' class='jbslider-handle-" + color + "'>";
+
 	slider_html += this.opts.handle_content;
+	console.log("	this.opts.handle_content:", this.opts.handle_content);
+
 	slider_html += "</div>";
 
 	this.container.html(slider_html);
-
+	console.log("	this.container", this.container.html(slider_html));
 }
 
 function bind_events() {
@@ -37,7 +40,6 @@ function bind_events() {
 	this.container.on("mousedown touchstart", startSlideRed.bind(this));
 	this.j_window.on("mousemove touchmove", moveSlideRed.bind(this));
 	this.j_window.on("mouseup touchend", stopSlideRed.bind(this));
-
 }
 
 function startSlideRed(event) {
@@ -59,7 +61,7 @@ function moveSlideRed(event) {
 	if (this.mouse_is_down) {
 
 		setValues(event, this);
-
+		console.log("")
 	};
 
 }
@@ -75,6 +77,7 @@ function stopSlideRed(event) {
 	};
 }
 
+
 function setValues(event, slider) {
 
 	var set_perc;
@@ -86,6 +89,7 @@ function setValues(event, slider) {
 	} else {
 
 		set_perc = ((((event.clientX - slider.container.offset().left) / slider.container.width())).toFixed(2));
+
 	};
 
 	var intensity = (55.2 * Math.log((set_perc * 100) + 1));
@@ -144,6 +148,8 @@ function setValues(event, slider) {
 
 		label_selector.html(intensity.toFixed());
 
+		//	console.log("slider:", slider);
+		//console.log("event:", event);
 		setBackground(slider, intensity.toFixed());
 
 	};
@@ -156,21 +162,32 @@ function setBackground(slider, val) {
 	var current_value = background.css('background-color');
 	var comma_split = current_value.split(', ');
 	var blue_split = comma_split[2].split(')');
-
+	console.log("current_value", current_value);
+	console.log("comma_split", comma_split);
 	var current_red = comma_split[0].slice(4);
 	var current_green = comma_split[1];
 	var current_blue = blue_split[0];
 
 	if (slider.color === "red") {
 		background.css('background-color', 'rgba(' + val + ',' + current_green + ',' + current_blue + ',1)');
+		console.log("val", val);
+		console.log("current_green", current_green);
+		console.log("current_blue", current_blue);
+
 	};
 
 	if (slider.color === "green") {
 		background.css('background-color', 'rgba(' + current_red + ',' + val + ',' + current_blue + ',1)');
+		console.log("val", val);
+		console.log("current_red", current_red);
+		console.log("current_blue", current_blue);
 	};
 
 	if (slider.color === "blue") {
 		background.css('background-color', 'rgba(' + current_red + ',' + current_green + ',' + val + ',1)');
+		console.log("val", val);
+		console.log("current_green", current_green);
+		console.log("current_red", current_red);
 	};
 
 }

@@ -2,6 +2,9 @@
 .navbar-nav li a:hover {
   color: white !important; }
 
+.navbar-dark .navbar-nav .nav-link {
+  color: white; }
+
 .active > a {
   color: white !important; }
 
