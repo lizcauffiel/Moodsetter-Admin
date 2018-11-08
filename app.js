@@ -12,15 +12,6 @@ var app = express();
 var mysql = require('mysql');
 var bodyParser = require("body-parser");
 
-
-
-//IDK IF NEEDED
-var colorUtility = require('./public/javascripts/color');
-
-
-
-
-
 //connect to user sql (table) db
 var connection = mysql.createConnection({
 	host: 'localhost',
@@ -57,46 +48,6 @@ app.post('/login', user.login);//call for login post
 app.get('/presetcolor', user.presetcolor);//call for dashboard page after login
 
 app.post('/table', table.tableSet);//call for table.js post
-
-//get the color the user picked from the pages
-app.post('/table', function (req, res) {
-	//testing
-	//console.log("this is before sending the color");
-
-	//the input and values from the color forms (pages)
-	var red = req.body.redInput;
-	var green = req.body.greenInput;
-	var blue = req.body.blueInput;
-	var host = req.session.host;
-
-	//testing
-	//console.log("sending color");
-
-
-
-
-
-	//IDK IF NEEDED
-	//call sendColor function in the colorUtility pass the parameters
-	//of the values found in the color forms (pages)
-	colorUtility.sendColor(host, red, green, blue);
-
-
-
-
-
-	//value from the color pages just submitted
-	console.log("body", req.body);
-	//testing
-	//res.send(200);
-	//console.log("sent color");
-
-	//redirect to color page they just submitted
-	return res.redirect('back');
-
-});
-
-
 
 //get the pages when the user clicks on their links and render them
 app.get('/loginhome', function (req, res) {

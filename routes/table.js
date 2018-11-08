@@ -57,9 +57,9 @@ exports.tableSet = function (req, res) {
 
 			//variable for the http url where the host is the value in the variable (ip address and port)
 			//red, green and blue values are the color values selected from the color pages
-			var colorEndPoint = "http://" + host + "/changeLedInRange?from=0&to=59&red=" + red + "&green=" + green + "&blue=" + blue + "&brightness=90"
+			var colorEndPoint = "http://" + host + "/changeLedInRange?from=0&to=59&red=" + red + "&green=" + green + "&blue=" + blue + "&brightness=50"
 			//testing purposes
-			//console.log("contacting colorEndPoint", colorEndPoint);
+			console.log("contacting colorEndPoint", colorEndPoint);
 
 			//send the request colorEndPoint, if it doesn't work send error
 			request(colorEndPoint, { json: true }, (err, res, body) => {
