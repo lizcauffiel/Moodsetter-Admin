@@ -26,20 +26,3 @@ h5{
 		font-size: 1rem !important;
 	}
 }
-
-
-/* hex code over the preview color css */
-/* #hexCode{
-	position:absolute;
-	z-index:0;
-	background:white;
-	display:block;
-	color:lightgrey;
-	bottom: -10%;
-	right: 10%;
-	background-color: transparent;
-}
-#hexCode-text{
-	color:black;
-	font-size:12px;
-} */

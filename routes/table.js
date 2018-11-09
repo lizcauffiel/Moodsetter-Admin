@@ -1,9 +1,10 @@
 // This file will get the form information of the colors RGB values and table number that was posted on the color pages
-// then it will connect to the database using the table number information and grab the hist value collelating to the table number. 
+// then it will connect to the database using the table number information and grab the hist value collecting to the table number. 
 // The host in the database is the ip address and port of the Raspberry Pi. Once the host is selected from the database a request 
 // "colorEndPoint" is sent to the Raspberry Pi. The request is the url that says the host to contact and RGB values to change to, so 
 // the LED lights will change color.
 
+//module dependencies 
 var express = require('express');
 var router = express.Router();
 const request = require('request');

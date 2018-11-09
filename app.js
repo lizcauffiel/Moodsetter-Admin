@@ -45,7 +45,7 @@ app.use(session({
 app.get('/', routes.index);//call for main index page
 app.get('/login', routes.index);//call for login page
 app.post('/login', user.login);//call for login post
-app.get('/presetcolor', user.presetcolor);//call for dashboard page after login
+app.get('/presetcolor', user.presetcolor);//call for preset color selection page after login
 
 app.post('/table', table.tableSet);//call for table.js post
 
