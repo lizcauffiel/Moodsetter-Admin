@@ -160,13 +160,20 @@ function setBackground(slider, val) {
 	var background = $('#wrapper');
 
 	var current_value = background.css('background-color');
-	var comma_split = current_value.split(', ');
-	var blue_split = comma_split[2].split(')');
+	var comma_split = current_value.split('(')[1]; //0,0,0,1)
+	var array = comma_split.split(",").slice(0, 3);
+	//var blue_split = comma_split[2].split(')');
 	console.log("current_value", current_value);
-	console.log("comma_split", comma_split);
-	var current_red = comma_split[0].slice(4);
-	var current_green = comma_split[1];
-	var current_blue = blue_split[0];
+	console.log("array", array);
+	var current_red = array[0];
+	var current_green = array[1];
+	var current_blue;
+	if (array[2].indexOf(")") != -1) {
+		current_blue = array[2].split(")")[0];
+	}
+	else {
+		current_blue = array[2];
+	}
 
 	if (slider.color === "red") {
 		background.css('background-color', 'rgba(' + val + ',' + current_green + ',' + current_blue + ',1)');

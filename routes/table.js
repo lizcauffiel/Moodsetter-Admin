@@ -31,6 +31,15 @@ exports.tableSet = function (req, res) {
 	var green = req.body.greenInput;
 	var blue = req.body.blueInput;
 
+	if (red == null || red == undefined) {
+		red = 0;
+	}
+	if (green == null || green == undefined) {
+		green = 0;
+	}
+	if (blue == null || blue == undefined) {
+		blue = 0;
+	}
 	//testing purposes
 	console.log(red, blue, green);
 	console.log("post", post);
