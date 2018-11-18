@@ -38,7 +38,7 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true,
 	//cookie expires after 1 hour
-	cookie: { expiry: 3600 }
+	cookie: { maxAge: 60 * 60 * 1000 }
 }))
 
 // development only
@@ -55,10 +55,17 @@ app.get('/loginhome', function (req, res) {
 		title: 'loginhome'
 	});
 });
+
 app.get('/mycolors', function (req, res) {
-	res.render('mycolors', {
-		title: 'mycolors'
-	});
+	console.log(req.session);
+	if (req.session.cookie != null || req.session.cookie != undefined) {
+		res.render('mycolors', {
+			title: 'mycolors'
+		});
+	}
+	else {
+		res.redirect('/login');//call for login page
+	}
 });
 app.get('/moodcolor', function (req, res) {
 	res.render('moodcolor', {

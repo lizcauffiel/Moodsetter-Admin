@@ -27,9 +27,9 @@ exports.login = function (req, res) {
 		//variable equals a sql select statement saying
 		//select the id, first_name, last_name, user_name from the admin table in the database where the user_name and password equals 
 		//what the user typed in
-		var sql = "SELECT id, first_name, last_name, user_name FROM `admin` WHERE `user_name`='" + name + "' and password = '" + pass + "'";
+		var sql = "SELECT id, first_name, last_name, user_name FROM `admin` WHERE `user_name`=? and password = ? ";
 		//calling the database and passing parameters
-		db.query(sql, function (err, results) {
+		db.query(sql, [name, pass], function (err, results) {
 			//if the results are not null or undefined (there is something in the database that meet the credentials the user put in)
 			if (results.length) {
 				//set the session variable equal to the id found

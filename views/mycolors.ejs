@@ -270,6 +270,73 @@
 							var slider_blue = new JBSlider(slider_options(color.blue));
 						}
 
+
+						window.addEventListener('load', function () {
+
+							var sliderredcontainer = document.getElementById('slider-red-container')
+							var slidergreencontainer = document.getElementById('slider-green-container')
+							var sliderbluecontainer = document.getElementById('slider-blue-container')
+
+							sliderredcontainer.addEventListener('touchstart', function (e) {
+								$("#redColorInput").val($('#info-red').html());
+
+								e.preventDefault()
+							}, false)
+
+							sliderredcontainer.addEventListener('touchmove', function (e) {
+								$("#redColorInput").val($('#info-red').html());
+
+								e.preventDefault()
+							}, false)
+
+							sliderredcontainer.addEventListener('touchend', function (e) {
+								$("#redColorInput").val($('#info-red').html());
+
+								e.preventDefault()
+							}, false)
+
+
+							slidergreencontainer.addEventListener('touchstart', function (e) {
+								$("#greenColorInput").val($('#info-green').html());
+
+								e.preventDefault()
+							}, false)
+
+							slidergreencontainer.addEventListener('touchmove', function (e) {
+								$("#greenColorInput").val($('#info-green').html());
+
+								e.preventDefault()
+							}, false)
+
+							slidergreencontainer.addEventListener('touchend', function (e) {
+								$("#greenColorInput").val($('#info-green').html());
+
+								e.preventDefault()
+							}, false)
+
+
+							sliderbluecontainer.addEventListener('touchstart', function (e) {
+								$("#blueColorInput").val($('#info-blue').html());
+
+								e.preventDefault()
+							}, false)
+
+							sliderbluecontainer.addEventListener('touchmove', function (e) {
+								$("#blueColorInput").val($('#info-blue').html());
+
+								e.preventDefault()
+							}, false)
+
+							sliderbluecontainer.addEventListener('touchend', function (e) {
+								$("#blueColorInput").val($('#info-blue').html());
+
+								e.preventDefault()
+							}, false)
+
+						}, false)
+
+
+
 						//getting red color value of the button clicked
 						$("#slider-red-container").click(function () {
 							//if button has the colorCircle class, if not return
